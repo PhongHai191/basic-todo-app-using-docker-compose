@@ -1,3 +1,4 @@
+const os = require("os");
 const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
@@ -47,7 +48,9 @@ waitForDatabase();
 /* ===============================
    ROUTES
 ================================= */
-
+app.get("/test", (req, res) => {
+   res.send("Hello from container PID: " + process.pid);
+});
 // Get all todos
 app.get("/todos", (req, res) => {
   db.query("SELECT * FROM todos", (err, results) => {
@@ -80,4 +83,5 @@ app.delete("/todos/:id", (req, res) => {
 ================================= */
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server running on port 3000");
+
 });
