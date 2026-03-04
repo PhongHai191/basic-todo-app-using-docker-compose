@@ -51,6 +51,9 @@ waitForDatabase();
 app.get("/test", (req, res) => {
    res.send("Hello from container PID: " + process.pid);
 });
+app.get("/whoami", (req, res) => {
+  res.send(os.hostname());
+});
 // Get all todos
 app.get("/todos", (req, res) => {
   db.query("SELECT * FROM todos", (err, results) => {
@@ -85,3 +88,4 @@ app.listen(3000, "0.0.0.0", () => {
   console.log("Server running on port 3000");
 
 });
+
